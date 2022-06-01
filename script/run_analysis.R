@@ -1,4 +1,4 @@
-#### Loading and initial data transformation
+#### Loading and initial data transformation --------
 
 # Load data into R global environment
 dat_training <- read.table("data/UCI HAR Dataset/train/X_train.txt")
@@ -26,7 +26,6 @@ dat_test <- cbind(dat_test, activity_labels_test, subject_id_test)
 
 # Remove data that is not needed anymore
 rm(activity_labels_train, subject_id_train, activity_labels_test, subject_id_test)
-
 
 
 #### Begin of the Analysis ---------
@@ -62,5 +61,4 @@ dat_aggregate <- aggregate(dat[grep("^(t|f)", names(dat))],
                            )
 # Save the data
 write.csv(dat_aggregate, "output/samsung_wearable_tidy.csv")
-
 

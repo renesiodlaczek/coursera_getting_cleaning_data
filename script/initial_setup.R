@@ -8,3 +8,4 @@ download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUC
               "data/samsung_wearable.zip")
 
 unzip("data/samsung_wearable.zip", exdir = "data", )
+

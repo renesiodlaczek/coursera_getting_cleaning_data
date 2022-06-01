@@ -38,3 +38,4 @@ dat_tidy_t[setdiff(names(dat_tidy_f), names(dat_tidy_t))] <- NA
 
 # Bind the two datasets together again into one dataset
 dat_tidy <- rbind(dat_tidy_t, dat_tidy_f)
+
