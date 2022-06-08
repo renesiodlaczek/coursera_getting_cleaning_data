@@ -368,24 +368,71 @@ pre code {
 <div id="coursera-getting-and-cleaning-data-course-assignment" class="section level1">
 <h1>Coursera “Getting and Cleaning Data”: Course Assignment</h1>
 <p>This repository contains the reproducible analysis for getting and
-cleaning data of a data set that contains data measurements with a
-Samsung wearable.</p>
+cleaning a dataset that contains measurements of a Samsung wearable
+regarding human acitivity recognition. Further information regarding the
+data can be found under <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones" class="uri">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a>.</p>
 <div id="repository-content" class="section level2">
 <h2>Repository Content</h2>
 <p>The folder <em>script</em> contains the R code to reproduce all steps
 that have been carried out. The file <em>initial_setup.R</em> contains
 code that creates the three folders and downloads the data.
 <em>run_analysis.R</em> contains the code that does the data cleaning
-task. <em>reshape_data.R</em> can be considered as optional and contains
-code to reshape the data into a longer format.</p>
+task. <em>reshape_data.R</em> is optional and contains code to reshape
+the data into a longer format.</p>
 <p>The folder <em>data</em> contains the downloaded raw data in a
 zip-file as well as the unzipped data in an own folder.</p>
-<p>The folder <em>output</em> contains the cleaned data set.</p>
+<p>The folder <em>output</em> contains the cleaned data set and the
+codebook.</p>
 <p>Furthermore the repository contains an .Rproj file, an .gitignore
 file and the readme.</p>
 </div>
-<div id="details-of-the-analysis" class="section level2">
-<h2>Details of the Analysis</h2>
+<div id="description-of-the-r-scripts" class="section level2">
+<h2>Description of the R scripts</h2>
+<p>In all scripts only base R is used.</p>
+<div id="initial-setup" class="section level3">
+<h3>Initial Setup</h3>
+<p>In <em>initial_setup.R</em> first of the three folders data, script
+and output are generated in the current working directory to make this
+step reproducible, too. Furthermore the data zip-file is downloaded and
+unzipped via R.</p>
+</div>
+<div id="main-analysis" class="section level3">
+<h3>Main Analysis</h3>
+<p>In <em>run_analysis.R</em> the downloaded data is read into the
+global environment. Because the complete dataset is split into separate
+files, multiple files need to be loaded. For both the training and
+testing data the activity labels and subject ids are immediately binded
+to the respecitve dataset.</p>
+<p>After this the following data transformation steps are carried
+out:</p>
+<ol style="list-style-type: decimal">
+<li>The training and the test sets are merged to create one data
+set.</li>
+<li>The measurements on the mean and standard deviation for each
+measurement are extracted. Only measurements with <em>mean()</em> and
+<em>std()</em> are selected.</li>
+<li>Descriptive activity names are added to name the activities in the
+dataset. The activity names come frome a separate dataset.</li>
+<li>The previously unnamed columns are labelled with descriptive
+variable names from another separate vector. The names are then cleaned
+to not include special characters and to only include lowercase letters
+separated by hyphen or underscore. This ensures that the data can be
+read by both human beings and computer programs without problems.</li>
+<li>From the dataset in step 4 a second, independent tidy dataset is
+created with the average of each variable for each activity and each
+subject.</li>
+<li>The resulting dataset is saved in a csv-file in the output
+folder.</li>
+</ol>
+</div>
+<div id="optional-reshaping-into-a-longer-format" class="section level3">
+<h3>Optional Reshaping into a longer Format</h3>
+<p>In <em>reshape_data.R</em> the dataset from the previous file is
+reshaped into a longer format. The variables are split based on the
+signal domain <em>time (t)</em> and <em>frequency (f)</em>. This is just
+for trying out the function. For the coursera assignment the previous
+dataset in a wide format is used.</p>
+</div>
 </div>
 </div>
 
