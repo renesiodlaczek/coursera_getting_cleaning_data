@@ -28,14 +28,14 @@ reshape_longer <- function(data, signal_domain, signal_domain_name) {
 }
 
 # Reshape both f and t columns separately
-dat_tidy_f <- reshape_longer(dat_aggregate, "f", "frequency")
-dat_tidy_t <- reshape_longer(dat_aggregate, "t", "time")
+dat_long_f <- reshape_longer(dat_aggregate, "f", "frequency")
+dat_long_t <- reshape_longer(dat_aggregate, "t", "time")
 
 # As both datasets have unique columns the missing columns from the other 
 # dataset need to be added
-dat_tidy_f[setdiff(names(dat_tidy_t), names(dat_tidy_f))] <- NA
-dat_tidy_t[setdiff(names(dat_tidy_f), names(dat_tidy_t))] <- NA
+dat_long_f[setdiff(names(dat_long_t), names(dat_long_f))] <- NA
+dat_long_t[setdiff(names(dat_long_f), names(dat_long_t))] <- NA
 
 # Bind the two datasets together again into one dataset
-dat_tidy <- rbind(dat_tidy_t, dat_tidy_f)
+dat_long <- rbind(dat_long_t, dat_long_f)
 
