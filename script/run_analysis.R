@@ -60,5 +60,5 @@ dat_aggregate <- aggregate(dat[grep("^(t|f)", names(dat))],
                            FUN = mean
                            )
 # Save the data
-write.csv(dat_aggregate, "output/samsung_wearable_tidy.csv")
+write.csv(dat_aggregate, "output/samsung_wearable_tidy.csv", row.names = FALSE)
 
