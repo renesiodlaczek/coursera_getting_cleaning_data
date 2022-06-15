@@ -1,0 +1,93 @@
+---
+title: "Codebook"
+output: github_document
+---
+
+```{r setup, include = FALSE}
+
+data_tidy <- read.csv("samsung_wearable_tidy.csv", check.names = FALSE)
+
+```
+
+```{r generate codebook, include = FALSE}
+
+attr(data_tidy, "classes") <- unlist(lapply(data_tidy, function(x) class(x)), use.names = FALSE)
+
+attr(data_tidy, "minimum") <- unlist(lapply(data_tidy, 
+                                            function(x) {
+                                                if(is.double(x)) {
+                                                round(min(x), 2)
+                                                } else if(is.integer(x)) {
+                                                format(min(x), digits = 0)
+                                                } else NA}),
+                                     use.names = FALSE)
+
+attr(data_tidy, "maximum") <- unlist(lapply(data_tidy, 
+                                            function(x) {
+                                                if(is.double(x)) {
+                                                round(max(x), 2)
+                                                } else if(is.integer(x)) {
+                                                format(max(x), digits = 0)
+                                                } else NA}),
+                                     use.names = FALSE) 
+                                            
+attr(data_tidy, "na_count") <- unlist(lapply(data_tidy, function(x) sum(is.na(x))), use.names = FALSE)
+
+#attr(data_tidy, "description") <- c("ID of the participating subjects",
+#                                    "Activity during measurement: ")
+
+
+```
+
+### Feature description
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals t-acc_xyz and t-gyro_xyz. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (t_body_acc_xyz and t_gravity_acc_xyz) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (t-body_acc_jerk_xyz and t-body_gyro_jerk_xyz). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (t-body_acc_mag, t-gravity_acc_mag, t-body_acc_jerk_mag, t-body_gyro_mag, t-body_gyro_jerk_mag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing f-body_acc_xyz, f-body_acc_jerk_xyz, f-body_gyro_xyz, f-body_acc_jerk_mag, f-body_gyro_mag, f-body_gyro_jerk_mag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern: '_xyz' is used to denote 3-axial signals in the X, Y and Z directions.
+
+The set of variables that were estimated from these signals are:
+
+- mean: Mean value
+- std: Standard deviation
+
+
+Additional vectors obtained by averaging the signals in a signal window sample:
+
+- t-body_acc_mag_mean              
+- t-gravity_acc_mag_mean    
+- t-body_acc_jerk_mag_mean 
+- t-body_gyro_mag_mean       
+- t-body_gyro_jerk_mag_mean     
+- f-body_acc_mag_mean      
+- f-body_body_acc_jerk_mag_mean
+- f-body_body_gyro_mag_mean
+- f-body_body_gyro_jerk_mag_mean
+
+
+The column subject contains the ID of the person who was wearing the wearable and did the different activities.
+
+The column activity contains information about the activities during the respective measurement: LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, WALKING_UPSTAIRS.
+
+
+
+### Dataset attributes
+
+No. of rows: `r {nrow(data_tidy)}`
+\
+No. of columns: `r {ncol(data_tidy)}`
+
+```{r pressure, echo = FALSE, results = 'asis'}
+library(knitr)
+
+kable(data.frame("Variable" = attributes(data_tidy)$names,
+                 "Class" = attributes(data_tidy)$classes,
+                 "Minimum" = attributes(data_tidy)$minimum,
+                 "Maximum" = attributes(data_tidy)$maximum,
+                 "NAs" = attributes(data_tidy)$na_count))
+
+```
+
