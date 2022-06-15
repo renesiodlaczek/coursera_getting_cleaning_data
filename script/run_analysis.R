@@ -61,4 +61,5 @@ dat_aggregate <- aggregate(dat[grep("^(t|f)", names(dat))],
                            )
 # Save the data
 write.csv(dat_aggregate, "output/samsung_wearable_tidy.csv", row.names = FALSE)
+write.table(dat_aggregate, "output/samsung_wearable_tidy.txt", row.names = FALSE)
 
