@@ -9,7 +9,7 @@ The folder *script* contains the R code to reproduce all steps that have been ca
 
 The folder *data* contains the downloaded raw data in a zip-file as well as the unzipped data in an own folder.
 
-The folder *output* contains the cleaned data set and the codebook.
+The folder *output* contains the cleaned data set and the [codebook](https://github.com/renesiodlaczek/coursera_getting_cleaning_data/blob/main/output/generate_codebook.md) incl. a R Markdown file to generate the codebook.
 
 Furthermore the repository contains an .Rproj file, an .gitignore file and the readme.
 
