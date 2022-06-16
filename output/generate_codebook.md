@@ -54,6 +54,9 @@ The column activity contains information about the activities during the
 respective measurement: LAYING, SITTING, STANDING, WALKING,
 WALKING_DOWNSTAIRS, WALKING_UPSTAIRS.
 
+For all measurements the mean of each subject-activity combination has
+been calculated.
+
 ### Dataset attributes
 
 No. of rows: 180  
